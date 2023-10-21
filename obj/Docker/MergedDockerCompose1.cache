@@ -1,0 +1,42 @@
+name: dockercompose682077959698952302
+services:
+  hdc.cat:
+    build:
+      context: C:\Users\mllewelyn\source\repos\HDC
+      dockerfile: HDC.Cat/Dockerfile
+    image: hdc.cat
+    networks:
+      default: null
+  hdc.web:
+    build:
+      context: C:\Users\mllewelyn\source\repos\HDC
+      dockerfile: HDC.Web/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: https://+:443;http://+:80
+    image: hdc.web
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 80
+        protocol: tcp
+      - mode: ingress
+        target: 443
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: C:\Users\mllewelyn\AppData\Roaming/Microsoft/UserSecrets
+        target: /root/.microsoft/usersecrets
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\mllewelyn\AppData\Roaming/ASP.NET/Https
+        target: /root/.aspnet/https
+        read_only: true
+        bind:
+          create_host_path: true
+networks:
+  default:
+    name: dockercompose682077959698952302_default

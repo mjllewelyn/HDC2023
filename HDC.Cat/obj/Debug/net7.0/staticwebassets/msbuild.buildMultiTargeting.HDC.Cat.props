@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\HDC.Cat.props" />
+</Project>

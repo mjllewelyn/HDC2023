@@ -1,0 +1,40 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="row">
+    <div class="col-4 text-center">
+        <h3>Cats <a href="#" id="Cat-next" data-next="2" class="next">Next</a></h3>
+    </div>
+    <div class="col-4 text-center">
+        <h3>Dogs <a href="#" id="Dog-next" data-next="2" class="next">Next</a></h3>
+    </div>
+    <div class="col-4 text-center">
+        <h3>Fish <a href="#" id="Fish-next" data-next="2" class="next">Next</a></h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-4 text-center">
+        <img src="/Images/Cat/Cat1.jpg" id="Cat-img" />
+    </div>
+    <div class="col-4 text-center">
+        <img src="/Images/Dog/Dog1.jpg" id="Dog-img" />
+    </div>
+    <div class="col-4 text-center">
+        <img src="/Images/Fish/Fish1.jpg" id="Fish-img" />
+    </div>
+</div>
+
+<script>
+    $("#Cat-next, #Dog-next, #Fish-next").on("click", function () {
+        var animal = $(this).attr('id').split("-")[0];
+        $(`#${animal}-img`).attr("src", `/Images/${animal}/${animal}${$(this).data("next")}.jpg`)
+        if ($(this).data("next") == 3)
+          $(this).data("next", 1)
+        else
+          $(this).data("next", $(this).data("next") + 1)
+    })
+</script>

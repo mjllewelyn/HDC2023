@@ -1,0 +1,195 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hdc-web
+  namespace: hdc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hdc-web
+  template:
+    metadata:
+      labels:
+        app: hdc-web
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": linux
+      containers:
+        - name: hdc-web
+          image: url.to.container_registry/hdc-web:1.0.0
+          volumeMounts:
+            - name: usersecrets
+              mountPath: ${APPDATA}/Microsoft/UserSecrets
+              subPath: /root/.microsoft/usersecrets:ro
+            - name: https
+              mountPath: ${APPDATA}/ASP.NET/Https
+              subPath: /root/.aspnet/https:ro
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Production
+            - name: ASPNETCORE_URLS
+              value: https://+:443;http://+:80
+          resources:
+            requests:
+              cpu: 100m
+              memory: 1Gi
+            limits:
+              cpu: 1
+              memory: 2Gi
+          ports:
+            - containerPort: 80
+      volumes:
+        - name: usersecrets
+          configMap:
+            name: usersecrets
+        - name: https
+          persistentVolumeClaim:
+            claimName: https
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hdc-cat
+  namespace: hdc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hdc-cat
+  template:
+    metadata:
+      labels:
+        app: hdc-cat
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": linux
+      containers:
+        - name: hdc-cat
+          image: url.to.container_registry/hdc-cat:1.0.0
+          volumeMounts:
+            - name: usersecrets
+              mountPath: ${APPDATA}/Microsoft/UserSecrets
+              subPath: /root/.microsoft/usersecrets:ro
+            - name: https
+              mountPath: ${APPDATA}/ASP.NET/Https
+              subPath: /root/.aspnet/https:ro
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Production
+            - name: ASPNETCORE_URLS
+              value: https://+:443;http://+:80
+          resources:
+            requests:
+              cpu: 100m
+              memory: 1Gi
+            limits:
+              cpu: 1
+              memory: 2Gi
+          ports:
+            - containerPort: 80
+      volumes:
+        - name: usersecrets
+          configMap:
+            name: usersecrets
+        - name: https
+          persistentVolumeClaim:
+            claimName: https
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hdc-dog
+  namespace: hdc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hdc-dog
+  template:
+    metadata:
+      labels:
+        app: hdc-dog
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": linux
+      containers:
+        - name: hdc-dog
+          image: url.to.container_registry/hdc-dog:1.0.0
+          volumeMounts:
+            - name: usersecrets
+              mountPath: ${APPDATA}/Microsoft/UserSecrets
+              subPath: /root/.microsoft/usersecrets:ro
+            - name: https
+              mountPath: ${APPDATA}/ASP.NET/Https
+              subPath: /root/.aspnet/https:ro
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Production
+            - name: ASPNETCORE_URLS
+              value: https://+:443;http://+:80
+          resources:
+            requests:
+              cpu: 100m
+              memory: 1Gi
+            limits:
+              cpu: 1
+              memory: 2Gi
+          ports:
+            - containerPort: 80
+      volumes:
+        - name: usersecrets
+          configMap:
+            name: usersecrets
+        - name: https
+          persistentVolumeClaim:
+            claimName: https
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hdc-fish
+  namespace: hdc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hdc-fish
+  template:
+    metadata:
+      labels:
+        app: hdc-fish
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": linux
+      containers:
+        - name: hdc-fish
+          image: url.to.container_registry/hdc-fish:1.0.0
+          volumeMounts:
+            - name: usersecrets
+              mountPath: ${APPDATA}/Microsoft/UserSecrets
+              subPath: /root/.microsoft/usersecrets:ro
+            - name: https
+              mountPath: ${APPDATA}/ASP.NET/Https
+              subPath: /root/.aspnet/https:ro
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Production
+            - name: ASPNETCORE_URLS
+              value: https://+:443;http://+:80
+          resources:
+            requests:
+              cpu: 100m
+              memory: 1Gi
+            limits:
+              cpu: 1
+              memory: 2Gi
+          ports:
+            - containerPort: 80
+      volumes:
+        - name: usersecrets
+          configMap:
+            name: usersecrets
+        - name: https
+          persistentVolumeClaim:
+            claimName: https

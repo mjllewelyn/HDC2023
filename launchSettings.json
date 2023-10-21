@@ -1,0 +1,18 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "composeLaunchAction": "LaunchBrowser",
+      "composeLaunchServiceName": "hdc.web",
+      "composeLaunchUrl": "http://localhost:50001",
+      "serviceActions": {
+        "hdc.web": "StartDebugging",
+        "hdc.web2": "StartDebugging",
+        "hdc.fish": "StartDebugging",
+        "hdc.cat": "StartDebugging",
+        "hdc.dog": "StartDebugging"
+      }
+    }
+  }
+}

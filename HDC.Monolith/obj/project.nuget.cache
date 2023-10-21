@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "ekFkLp2r1HnmzipzdSYTJArTfvPkuindw6/ORG4eSkRYVlCvuOB0dvcTHIYaCz4AISDkDn75LnQ3/saLVQVvjg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\mllewelyn\\source\\repos\\HDC\\HDC.Monolith\\HDC.Monolith.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mllewelyn\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.4\\microsoft.visualstudio.azure.containers.tools.targets.1.19.4.nupkg.sha512"
+  ],
+  "logs": []
+}

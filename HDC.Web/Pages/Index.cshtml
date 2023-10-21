@@ -1,0 +1,68 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="row">
+    <div class="col-4 text-center">
+        <h3>Cats <a href="#" id="Cat-next" data-healthy="@Model.CatHealthy.ToString().ToLower()" data-url="@Model.CatUrl" data-next="2" class="next">Next</a></h3>
+    </div>
+    <div class="col-4 text-center">
+        <h3>Dogs <a href="#" id="Dog-next" data-healthy="@Model.DogHealthy.ToString().ToLower()" data-url="@Model.DogUrl" data-next="2" class="next">Next</a></h3>
+    </div>
+    <div class="col-4 text-center">
+        <h3>Fish <a href="#" id="Fish-next" data-healthy="@Model.FishHealthy.ToString().ToLower()" data-url="@Model.FishUrl" data-next="2" class="next">Next</a></h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-4 text-center">
+        @if (Model.CatHealthy)
+        {
+            <img src="@Model.CatUrl/Cat1" id="Cat-img" alt="Cat image" />
+        }
+        else
+        {
+            <p style="color: red;">The Cat Service is unavailable at this time</p>
+        }
+    </div>
+    <div class="col-4 text-center">
+        @if (Model.DogHealthy)
+        {
+            <img src="@Model.DogUrl/Dog1" id="Dog-img" alt="Dog image" />
+        }
+        else
+        {
+            <p style="color: red;">The Dog Service is unavailable at this time</p>
+        }
+    </div>
+    <div class="col-4 text-center">
+        @if (Model.FishHealthy)
+        {
+            <img src="@Model.FishUrl/Fish1" id="Fish-img" alt="Fish image" />
+        }
+        else
+        {
+            <p style="color: red;">The Fish Service is unavailable at this time</p>
+        }
+    </div>
+</div>
+
+<script>
+    $("#Cat-next, #Dog-next, #Fish-next").on("click", function () {
+        if (!$(this).data("healthy"))
+          return
+        
+        var url = $(this).data("url")
+        var animal = $(this).attr('id').split("-")[0];
+        var next = $(`#${animal}-next`).data("next")
+
+        $(`#${animal}-img`).attr("src", `${url}/${animal}${next}`)
+
+        if (next == 3)
+            $(this).data("next", 1)
+        else
+            $(this).data("next", next + 1)
+    })
+</script>

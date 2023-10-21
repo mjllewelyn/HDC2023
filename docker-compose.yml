@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  hdc.web:
+    image: hdc.web
+    build:
+      context: .
+      dockerfile: HDC.Web/Dockerfile
+
+  hdc.cat:
+    image: hdc.cat
+    build:
+      context: .
+      dockerfile: HDC.Cat/Dockerfile
+
+  hdc.dog:
+    image: hdc.dog
+    build:
+      context: .
+      dockerfile: HDC.Dog/Dockerfile
+
+  hdc.fish:
+    image: hdc.fish
+    build:
+      context: .
+      dockerfile: HDC.Fish/Dockerfile
+
+  hdc.web2:
+    image: hdc.web
+    build:
+      context: .
+      dockerfile: HDC.Web/Dockerfile
